@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../public/styles/abstracts/variable";
+@import "../public/styles/base/typography";
+@import "../public/styles/components/button";
+
+body {
+  margin: 0;
+  padding: 30px;
+  height: 100%;
+  background-color: #fff;
+}
+
+html {
+  height: 100%;
+}

@@ -1,0 +1,23 @@
+button {
+  color: $primary;
+  background: $btnColor;
+  padding: 10px 26px 10px 26px;
+  font-family: $fontContent;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  line-height: 24px;
+  &:hover {
+    background: $primary;
+    color: $textColor;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+  }
+  @media (min-width: 1024px) {
+    font-size: 1.4rem;
+  }
+}
