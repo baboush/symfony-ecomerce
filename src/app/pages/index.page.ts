@@ -1,15 +1,23 @@
-import { Component, Signal, signal } from '@angular/core';
-import HeaderComponent from '../core/components/header.component';
-import CardComponent from '../core/components/card.component';
-import { getProducts } from '../services/products.service';
+import { Component } from '@angular/core';
+import {
+  HeaderComponent,
+  CardComponent,
+  FooterComponent,
+} from '@app/core/components';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, CardComponent],
+  imports: [HeaderComponent, CardComponent, FooterComponent],
   template: ` <app-header />
-    <app-card [product]="product" />`,
-  styles: [],
+    <main class="container">
+      <app-card [product]="product" />
+    </main>
+    <app-footer />`,
+  styles: `
+    host: {
+    }
+  `,
 })
 export default class HomeComponent {
   product = {
