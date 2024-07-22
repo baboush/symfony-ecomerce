@@ -20,7 +20,12 @@
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
     "useDefineForClassFields": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@app/core/components": ["./src/app/core/components/index.ts"],
+      "@app/shared/utils": ["src/app/shared/utils/index.ts"],
+      "@app/shared/interfaces": ["src/app/shared/interfaces/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

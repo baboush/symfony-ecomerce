@@ -10,8 +10,13 @@ button {
   font-size: 1rem;
   line-height: 24px;
   &:hover {
-    background: $primary;
-    color: $textColor;
+    transform: scale(1.1);
+    transition: transform 0.1s;
+  }
+
+  &:disabled {
+    background: $secondary;
+    color: $primary;
   }
 
   @media (min-width: 768px) {
