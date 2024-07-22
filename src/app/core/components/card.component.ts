@@ -11,7 +11,7 @@ export interface ProductCard {
   selector: 'app-card',
   standalone: true,
   template: `
-    @if (product() !== undefined) {
+    @if (product()) {
       <div class="card">
         <span class="card-info">New</span>
         <div class="card-image">
