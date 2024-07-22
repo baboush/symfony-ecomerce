@@ -3,19 +3,23 @@ import {
   HeaderComponent,
   CardComponent,
   FooterComponent,
+  BannerComponent,
 } from '@app/core/components';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, CardComponent, FooterComponent],
+  imports: [HeaderComponent, CardComponent, FooterComponent, BannerComponent],
   template: ` <app-header />
     <main class="container">
+      <app-banner />
       <app-card [product]="product" />
     </main>
     <app-footer />`,
   styles: `
     host: {
+      position: relative;
+      min-height: 100%;
     }
   `,
 })

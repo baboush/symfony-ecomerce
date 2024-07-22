@@ -154,9 +154,7 @@ import { Component } from '@angular/core';
       color: white;
       background: #333333;
       padding: 1rem;
-      width: 100%;
-      position: fixed;
-      bottom: 0;
+      position: absolute;
 
       .contact {
         display: grid;

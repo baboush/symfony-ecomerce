@@ -37,17 +37,18 @@ export interface ProductCard {
         .card {
           display: flex;
           flex-direction: column;
-          max-width: 320px;
-          max-height: 300px;
+          max-width: 20%;
+          max-height: auto;
           position: relative;
+          padding: 1rem;
           gap: 1rem;
           &-info {
             position: absolute;
-            top: 15px;
+            top: 2em;
             padding: 0.5rem;
             background: #000000;
             color: #ffffff;
-            right: -35px;
+            right: 0.1em;
             border-radius: 5px;
             font-family: 'Work sans', sans-serif;
             font-weight: 700;
