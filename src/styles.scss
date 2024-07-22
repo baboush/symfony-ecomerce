@@ -2,11 +2,12 @@
 @import "../public/styles/abstracts/variable";
 @import "../public/styles/base/typography";
 @import "../public/styles/components/button";
+@import "../public/styles/base/wrapper";
 
 body {
-  margin: 0;
-  padding: 30px;
+  margin: 0px;
   height: 100%;
+  padding: 0px;
   background-color: #fff;
 }
 
