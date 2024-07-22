@@ -21,10 +21,14 @@ import { emailRegex, passwordRegex } from '@app/shared/utils';
         Connectez-vous pour accéder à votre espace personnel.
       </p>
     </div>
-    <app-form-auth [formGroup]="loginFrom" [userInput]="loginInputField" />
+    <app-form-auth
+      [formGroup]="loginFrom"
+      [userInput]="loginInputField"
+      [actionForm]="'Se connecter'"
+    />
     <div class="footer-connection">
       <p>Pas encore de compte ?</p>
-      <a class="footer-connection-link" routerLink="/sigIn">Créer en un</a>
+      <a class="footer-connection-link" routerLink="/register">Créer en un</a>
     </div>
   `,
   styles: `

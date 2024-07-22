@@ -1,2 +1,4 @@
 import { emailRegex, passwordRegex } from './regex';
-export { emailRegex, passwordRegex };
+import { MatchPassword } from './match-password.validator';
+
+export { emailRegex, passwordRegex, MatchPassword };

@@ -18,7 +18,7 @@ import InputComponent from './input.component';
           [disabled]="!formGroup().valid"
           class="form-auth-btn"
         >
-          Se connecter
+          {{ actionForm() }}
         </button>
       </form>
     }
@@ -48,6 +48,7 @@ import InputComponent from './input.component';
 export default class FormAuthComponent {
   formGroup = input<FormGroup>(new FormGroup({}));
   userInput = input<AuthFieldInput[]>();
+  actionForm = input<string>('');
 
   onSubmit(): void {
     console.log('Form submitted', this.formGroup()?.value);
