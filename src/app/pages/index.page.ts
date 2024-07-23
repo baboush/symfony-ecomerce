@@ -5,6 +5,7 @@ import {
   FooterComponent,
   BannerComponent,
   CardBrandComponent,
+  CardBrandCarouselComponent,
 } from '@app/core/components';
 
 @Component({
@@ -16,6 +17,7 @@ import {
     FooterComponent,
     BannerComponent,
     CardBrandComponent,
+    CardBrandCarouselComponent,
   ],
   template: ` <app-header />
     <main class="container">
@@ -25,6 +27,11 @@ import {
         [imgSrc]="'../../../public/Images/Sneakers/AirJordan4MidnightNavy.webp'"
         [imgAlt]="'icon marque'"
         [brandName]="'Addidas'"
+      />
+      <app-card-brand-carousel
+        [brandName]="'Nike'"
+        [imgSrc]="'../../../public/Images/Marques/nike.webp'"
+        [altImg]="'marque exemple'"
       />
     </main>
     <app-footer />`,

@@ -151,6 +151,7 @@ import { Component } from '@angular/core';
       font-family: 'Inter', sans-serif;
       font-weight: 400;
       justify-content: center;
+      position: absolute;
       color: white;
       background: #333333;
       padding: 1rem;
