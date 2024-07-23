@@ -4,6 +4,7 @@ import HeaderComponent from './header.component';
 import CardComponent from './card.component';
 import FooterComponent from './footer.component';
 import BannerComponent from './banner.component';
+import CardBrandComponent from './card-brand.component';
 
 export {
   HeaderComponent,
@@ -12,4 +13,5 @@ export {
   CardComponent,
   FooterComponent,
   BannerComponent,
+  CardBrandComponent,
 };
