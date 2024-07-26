@@ -1,4 +1,5 @@
 import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
   FormControl,
@@ -6,11 +7,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { FormAuthComponent, InputComponent } from '@app/core/components';
-import { AuthService } from '@app/services';
-import { AuthFieldInput, UserCredentials } from '@app/shared/interfaces';
+import {
+  FormAuthComponent,
+  InputComponent,
+} from '@app/features/auth/components';
+import { AuthService } from '@app/core/services';
+import { FieldInput, UserCredentials } from '@app/shared/interfaces';
 import { MatchPassword, emailRegex, passwordRegex } from '@app/shared/utils';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-register',
@@ -83,7 +86,7 @@ export default class RegisterComponent {
     { validators: MatchPassword('password', 'checkPassword') },
   );
 
-  subscriberInputField: AuthFieldInput[] = [
+  subscriberInputField: FieldInput[] = [
     {
       inputId: 'email-subscriber',
       labelFor: 'Email',

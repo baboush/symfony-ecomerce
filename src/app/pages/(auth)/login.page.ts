@@ -7,9 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { FormAuthComponent } from '@app/core/components';
-import { AuthService } from '@app/services';
-import { AuthFieldInput, UserCredentials } from '@app/shared/interfaces';
+import { FormAuthComponent } from '@app/features/auth/components';
+import { AuthService } from '@app/core/services';
+import { FieldInput, UserCredentials } from '@app/shared/interfaces';
 import { emailRegex, passwordRegex } from '@app/shared/utils';
 import { jwtDecode } from 'jwt-decode';
 import { tap } from 'rxjs';
@@ -88,7 +88,7 @@ export default class LoginComponent {
     ]),
   });
 
-  loginInputField: AuthFieldInput[] = [
+  loginInputField: FieldInput[] = [
     {
       labelFor: 'Email',
       inputId: 'email',

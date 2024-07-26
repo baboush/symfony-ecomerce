@@ -17,6 +17,19 @@ export default defineConfig(({ mode }) => ({
         __dirname,
         'src/app/core/components/index.ts',
       ),
+      '@app/core/models/entities': path.resolve(
+        __dirname,
+        'src/app/core/models/entities/index.ts',
+      ),
+
+      '@app/core/services': path.resolve(
+        __dirname,
+        'src/app/core/services/index.ts',
+      ),
+      '@app/core/interceptors': path.resolve(
+        __dirname,
+        'src/app/core/interceptors/index.ts',
+      ),
       '@app/shared/interfaces': path.resolve(
         __dirname,
         'src/app/shared/interfaces/index.ts',
@@ -26,9 +39,9 @@ export default defineConfig(({ mode }) => ({
         'src/app/shared/utils/index.ts',
       ),
       '@app/services': path.resolve(__dirname, 'src/app/services/index.ts'),
-      '@app/shared/interceptors': path.resolve(
+      '@app/features/auth/components': path.resolve(
         __dirname,
-        'src/app/shared/interceptors/index.ts',
+        'src/app/features/auth/components/index.ts',
       ),
     },
   },
