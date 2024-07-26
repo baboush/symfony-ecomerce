@@ -1,14 +1,26 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
   FormControl,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormAuthComponent } from '@app/core/components';
-import { AuthFieldInput } from '@app/shared/interfaces';
+import { AuthService } from '@app/services';
+import { AuthFieldInput, UserCredentials } from '@app/shared/interfaces';
 import { emailRegex, passwordRegex } from '@app/shared/utils';
+import { jwtDecode } from 'jwt-decode';
+import { tap } from 'rxjs';
+
+interface LoginResponse {
+  token: string;
+}
+
+interface Roles {
+  roles: string[];
+}
 
 @Component({
   selector: 'app-login',
@@ -17,7 +29,7 @@ import { emailRegex, passwordRegex } from '@app/shared/utils';
   template: `
     <div class="header-connection">
       <h1 class="header-connection-title">Connexion</h1>
-      <p class="header-conection-paragraph">
+      <p class="header-connection-paragraph">
         Connectez-vous pour accéder à votre espace personnel.
       </p>
     </div>
@@ -25,6 +37,7 @@ import { emailRegex, passwordRegex } from '@app/shared/utils';
       [formGroup]="loginFrom"
       [userInput]="loginInputField"
       [actionForm]="'Se connecter'"
+      (userCredentials)="login($event)"
     />
     <div class="footer-connection">
       <p>Pas encore de compte ?</p>
@@ -58,6 +71,9 @@ import { emailRegex, passwordRegex } from '@app/shared/utils';
 })
 export default class LoginComponent {
   private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
 
   loginFrom = this.fb.group({
     email: new FormControl('', [
@@ -86,4 +102,42 @@ export default class LoginComponent {
       formControlName: 'password',
     },
   ];
+
+  login(user: UserCredentials) {
+    if (this.loginFrom.valid) {
+      const loggedUser = {
+        username: user.email,
+        password: user.password,
+      };
+      this.authService
+        .login(loggedUser)
+        .pipe(
+          takeUntilDestroyed(this.destroyRef),
+          tap((response) => {
+            if (!!response && !!response.body) this.tokenStorage(response.body);
+            this.redirectTo();
+          }),
+        )
+        .subscribe({
+          next: () => this.redirectTo(),
+          error: (error) => console.error(error),
+        });
+    }
+  }
+
+  tokenStorage(response: LoginResponse) {
+    localStorage.setItem('token', response.token);
+  }
+
+  redirectTo() {
+    const token = localStorage.getItem('token');
+    if (!!token) {
+      const tokenDecoded = jwtDecode<Roles>(token);
+      if (tokenDecoded.roles.includes('ROLE_ADMIN')) {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/']);
+      }
+    }
+  }
 }
