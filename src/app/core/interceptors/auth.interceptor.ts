@@ -5,8 +5,8 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from '@app/services';
 import { Observable } from 'rxjs';
+import { AuthService } from '@app/core/services';
 
 export function AuthInterceptor(
   request: HttpRequest<unknown>,

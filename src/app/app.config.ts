@@ -6,7 +6,7 @@ import {
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideFileRouter } from '@analogjs/router';
-import { AuthInterceptor } from '@app/shared/interceptors';
+import { AuthInterceptor } from '@app/core/interceptors';
 
 export const appConfig: ApplicationConfig = {
   providers: [
