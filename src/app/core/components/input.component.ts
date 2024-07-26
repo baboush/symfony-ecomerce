@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthFieldInput } from '@app/shared/interfaces';
+import { FieldInput } from '@app/shared/interfaces';
 
 @Component({
   selector: 'app-input',
@@ -119,11 +119,6 @@ import { AuthFieldInput } from '@app/shared/interfaces';
   `,
 })
 export default class InputComponent {
-  type = input<AuthFieldInput>({
-    labelFor: '',
-    inputId: '',
-    inputType: '',
-    formControlName: '',
-  });
-  formGroup = input<FormGroup>(new FormGroup({}));
+  type = input.required<FieldInput>({});
+  formGroup = input.required<FormGroup>();
 }

@@ -35,6 +35,7 @@ import {
       />
     </main>
     <app-footer />`,
+  styles: ``,
 })
 export default class HomeComponent {
   product = {

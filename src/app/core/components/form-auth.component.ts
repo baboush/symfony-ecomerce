@@ -1,6 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthFieldInput } from '@app/shared/interfaces';
+import { FieldInput, UserCredentials } from '@app/shared/interfaces';
 import InputComponent from './input.component';
 
 @Component({
@@ -46,11 +46,16 @@ import InputComponent from './input.component';
   `,
 })
 export default class FormAuthComponent {
-  formGroup = input<FormGroup>(new FormGroup({}));
-  userInput = input<AuthFieldInput[]>();
-  actionForm = input<string>('');
+  formGroup = input.required<FormGroup>();
+  userInput = input.required<FieldInput[]>();
+  actionForm = input.required<string>();
+  userCredentials = output<UserCredentials>();
 
   onSubmit(): void {
-    console.log('Form submitted', this.formGroup()?.value);
+    const user = {
+      email: this.formGroup()?.value.email,
+      password: this.formGroup()?.value.password,
+    };
+    this.userCredentials.emit(user);
   }
 }

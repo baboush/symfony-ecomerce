@@ -1,3 +1,4 @@
-import { AuthFieldInput } from './auth-field-input.interface';
+import { FieldInput } from './auth-field-input.interface';
+import { UserCredentials } from './user-credential.interface';
 
-export { AuthFieldInput };
+export { FieldInput, UserCredentials };

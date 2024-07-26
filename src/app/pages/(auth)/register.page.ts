@@ -1,14 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormAuthComponent, InputComponent } from '@app/core/components';
-import { AuthFieldInput } from '@app/shared/interfaces';
+import { AuthService } from '@app/services';
+import { AuthFieldInput, UserCredentials } from '@app/shared/interfaces';
 import { MatchPassword, emailRegex, passwordRegex } from '@app/shared/utils';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,7 @@ import { MatchPassword, emailRegex, passwordRegex } from '@app/shared/utils';
   template: `
     <div class="header-connection">
       <h1 class="header-connection-title">S'inscrire</h1>
-      <p class="header-conection-paragraph">
+      <p class="header-connection-paragraph">
         Créez-vous un compte pour commencer à faire votre collection de Sneakers
       </p>
     </div>
@@ -25,6 +27,7 @@ import { MatchPassword, emailRegex, passwordRegex } from '@app/shared/utils';
       [formGroup]="registerForm"
       [userInput]="subscriberInputField"
       [actionForm]="'Inscription'"
+      (userCredentials)="register($event)"
     />
     <div class="footer-connection">
       <p>Déjà un compte ?</p>
@@ -58,6 +61,9 @@ import { MatchPassword, emailRegex, passwordRegex } from '@app/shared/utils';
 })
 export default class RegisterComponent {
   private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
 
   registerForm = this.fb.group(
     {
@@ -97,4 +103,21 @@ export default class RegisterComponent {
       formControlName: 'checkPassword',
     },
   ];
+
+  register(user: UserCredentials) {
+    if (this.registerForm.valid)
+      this.authService
+        .subscription(user)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => this.redirectTo(),
+          error: (error) => {
+            console.error(error);
+          },
+        });
+  }
+
+  redirectTo() {
+    this.router.navigate(['/login']);
+  }
 }
