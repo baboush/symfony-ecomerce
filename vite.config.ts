@@ -2,6 +2,7 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import * as path from 'path';
 
 // https://vitejs.dev/config/
@@ -24,11 +25,21 @@ export default defineConfig(({ mode }) => ({
         __dirname,
         'src/app/shared/utils/index.ts',
       ),
+      '@app/services': path.resolve(__dirname, 'src/app/services/index.ts'),
+      '@app/shared/interceptors': path.resolve(
+        __dirname,
+        'src/app/shared/interceptors/index.ts',
+      ),
     },
   },
   plugins: [
     analog({
       vite: { inlineStylesExtension: 'scss' },
+    }),
+    basicSsl({
+      name: 'test',
+      domains: ['https://localhost:8000'],
+      certDir: '../../../Php/e-commerce/front/cert.pem',
     }),
   ],
   test: {
