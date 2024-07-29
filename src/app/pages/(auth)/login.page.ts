@@ -130,7 +130,7 @@ export default class LoginComponent {
   }
 
   redirectTo() {
-    const token = localStorage.getItem('token');
+    const token = window.localStorage.getItem('token');
     if (!!token) {
       const tokenDecoded = jwtDecode<Roles>(token);
       if (tokenDecoded.roles.includes('ROLE_ADMIN')) {
