@@ -25,13 +25,15 @@
       "@app/core/components": ["./src/app/core/components/index.ts"],
       "@app/core/interceptors": ["./src/app/core/interceptors/index.ts"],
       "@app/core/services": ["./src/app/core/services/index.ts"],
+      "@app/core/guards": ["./src/app/core/guards/index.ts"],
       "@app/core/models/entities": ["./src/app/core/models/entities/index.ts"],
       "@app/features/auth/components": [
         "./src/app/features/auth/components/index.ts"
       ],
       "@app/services": ["./src/app/services/index.ts"],
       "@app/shared/utils": ["src/app/shared/utils/index.ts"],
-      "@app/shared/interfaces": ["src/app/shared/interfaces/index.ts"]
+      "@app/shared/interfaces": ["src/app/shared/interfaces/index.ts"],
+      "@app/shared/components": ["src/app/shared/components/index.ts"]
     }
   },
   "angularCompilerOptions": {
